@@ -15,11 +15,14 @@ namespace Cars_Racing.Vehicle.Car
         private SteeringWheel _steeringWheel;
         [SerializeField]
         private Gearbox _gearbox;
+        [SerializeField]
+        private Engine _engine;
 
         public void SetupInputToComponets(CarInputData carInputData)
         {
             _steeringWheel.SetSteeringWheelValue(carInputData.SteeringWheelInput);
             _gearbox.SetGearChangeValue(carInputData.GearIncreaseInput, carInputData.GearDecreaseInput);
+            _engine.SetEngineValues(carInputData.GasInput, carInputData.FootBreakInput);
         }
     }
 }
