@@ -14,7 +14,7 @@ namespace Cars_Racing.Vehicle.SteeringWheelLogic
         {
             foreach(WheelCollider wheel in _carWheels)
             {
-                wheel.steerAngle = steeringWheelValue * 45f;
+                wheel.steerAngle = Mathf.Lerp(wheel.steerAngle, steeringWheelValue * 45f, Time.deltaTime * 10f);
             }
         }
     }
