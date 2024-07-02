@@ -13,18 +13,22 @@ namespace Cars_Racing.Vehicle.Transmission
         [SerializeField]
         private int _carGearCount;
 
+        private Coroutine _switchGearCoroutine;
+
         public int CurrentGear { get => _currentGear; private set => _currentGear = value; }
+        public bool IsGearSwitching { get; private set; }
 
-        public AnimationCurve GearSpeedCurve => new AnimationCurve(new Keyframe(-1, 0.05f), new Keyframe(0, 0.1f), new Keyframe(0.18f, 0.8f), new Keyframe(0.35f, 1), new Keyframe(1, 0.15f), new Keyframe(2, -1));
-
-        public void SetGear(int gear)
+        public IEnumerator SetGear(int gear)
         {
+            IsGearSwitching = true;
             CurrentGear = Mathf.Clamp(gear, -1, _carGearCount);
+            yield return new WaitForSeconds(0.5f);
+            IsGearSwitching = false;
         }
 
         public void SetGearChangeValue(bool increaseGear, bool decreaseGear)
         {
-            if(increaseGear)
+            if (increaseGear)
             {
                 IncreaseGear();
             }
@@ -36,12 +40,18 @@ namespace Cars_Racing.Vehicle.Transmission
 
         private void IncreaseGear()
         {
-            SetGear(CurrentGear + 1);
+            if (CurrentGear == _carGearCount)
+                return;
+
+            _switchGearCoroutine = StartCoroutine(SetGear(CurrentGear + 1));
         }
 
         private void DecreaseGear()
         {
-            SetGear(CurrentGear - 1);
+            if (CurrentGear == -1)
+                return;
+
+            _switchGearCoroutine = StartCoroutine(SetGear(CurrentGear - 1));
         }
     }
 }
