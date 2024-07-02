@@ -12,7 +12,7 @@ namespace Cars_Racing.InputLogics
         [SerializeField]
         private InputActionReference _footBreak;
         [SerializeField]
-        private InputActionReference _wheelSteeringAction;
+        private InputActionReference _steeringWheelAction;
         [SerializeField]
         private InputActionReference _handBreakAction;
         [SerializeField]
@@ -22,11 +22,11 @@ namespace Cars_Racing.InputLogics
 
         public float GasInput => _gasAction.action.ReadValue<float>();
         public float FootBreak => _footBreak.action.ReadValue<float>();
-        public float WheelSteeringAction => _wheelSteeringAction.action.ReadValue<float>();
+        public float SteeringWheelAction => _steeringWheelAction.action.ReadValue<float>();
         public float HandBreakInput => _handBreakAction.action.ReadValue<float>();
         public bool GearIncreaseInput => _gearIncreaseAction.action.triggered;
         public bool GearDecreaseInput => _gearDecreaseAction.action.triggered;
 
-        public CarInputData PlayerInputData => new CarInputData(GasInput, FootBreak, WheelSteeringAction, HandBreakInput, GearIncreaseInput, GearDecreaseInput);
+        public CarInputData PlayerInputData => new CarInputData(GasInput, FootBreak, SteeringWheelAction, HandBreakInput, GearIncreaseInput, GearDecreaseInput);
     }
 }

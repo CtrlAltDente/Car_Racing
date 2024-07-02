@@ -5,7 +5,7 @@ using UnityEngine.Events;
 
 namespace Cars_Racing.InputLogics
 {
-    public class PlayerInput : MonoBehaviour
+    public class CarInput : MonoBehaviour
     {
         public UnityEvent<CarInputData> OnCarInputDataReady;
 

@@ -10,16 +10,16 @@ namespace Cars_Racing.InputLogics
     {
         public float GasInput;
         public float FootBreakInput;
-        public float WheelSteeringInput;
+        public float SteeringWheelInput;
         public float HandBreakInput;
         public bool GearIncreaseInput;
         public bool GearDecreaseInput;
 
-        public CarInputData(float gasInput, float footBreakInput, float wheelSteeringInput, float handBreakInput, bool gearIncreaseInput, bool gearDecreaseInput)
+        public CarInputData(float gasInput, float footBreakInput, float steeringWheelInput, float handBreakInput, bool gearIncreaseInput, bool gearDecreaseInput)
         {
             GasInput = gasInput;
             FootBreakInput = footBreakInput;
-            WheelSteeringInput = wheelSteeringInput;
+            SteeringWheelInput = steeringWheelInput;
             HandBreakInput = handBreakInput;
             GearIncreaseInput = gearIncreaseInput;
             GearDecreaseInput = gearDecreaseInput;
