@@ -17,6 +17,7 @@ namespace Cars_Racing.Vehicle.Transmission
 
         public int CurrentGear { get => _currentGear; private set => _currentGear = value; }
         public bool IsGearSwitching { get; private set; }
+        public bool IsNeutralGear => _currentGear == 0;
 
         public IEnumerator SetGear(int gear)
         {

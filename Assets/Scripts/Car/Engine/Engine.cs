@@ -1,3 +1,4 @@
+using Cars_Racing.Vehicle.Car;
 using Cars_Racing.Vehicle.Transmission;
 using System.Collections;
 using System.Collections.Generic;
@@ -23,26 +24,20 @@ namespace Cars_Racing.Vehicle.EngineLogic
 
         private void Gas(float gasValue)
         {
-            if (!_gearbox.IsGearSwitching)
+            float motorTorque;
+
+            if (!_gearbox.IsGearSwitching && !_gearbox.IsNeutralGear)
             {
                 _ecu.CalculateRPM(gasValue);
-
-                foreach (var wheelCollider in _wheelColliders)
-                {
-                    wheelCollider.motorTorque = gasValue * _ecu.GearEfficientValue * _gearbox.CurrentGear * 1000f;
-                }
+                motorTorque = gasValue * _ecu.RPMEfficientValue * _gearbox.CurrentGear * CarInformation.CarConfiguration.HorsePower;
             }
             else
             {
-                _ecu.CalculateRPM(0);
-
-                foreach (var wheelCollider in _wheelColliders)
-                {
-                    wheelCollider.motorTorque = 0 * _ecu.GearEfficientValue * _gearbox.CurrentGear * 1000f;
-                }
+                _ecu.CalculateRPM(-0.2f);
+                motorTorque = _ecu.RPMEfficientValue * CarInformation.CarConfiguration.HorsePower;
             }
 
-            Debug.Log($"RPM: {_ecu.CurrentRPM}");
+            _wheelColliders.DoWheelAction(wheel => wheel.motorTorque = motorTorque);
         }
 
         private void FootBreak(float breakValue)
