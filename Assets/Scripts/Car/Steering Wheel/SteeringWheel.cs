@@ -10,11 +10,16 @@ namespace Cars_Racing.Vehicle.SteeringWheelLogic
         [SerializeField]
         private WheelCollider[] _carWheels;
 
+        [SerializeField]
+        private float _rotationAngle = 45f;
+        [SerializeField]
+        private float _rotationSpeed = 90f;
+
         public void SetSteeringWheelValue(float steeringWheelValue)
         {
             foreach(WheelCollider wheel in _carWheels)
             {
-                wheel.steerAngle = Mathf.Lerp(wheel.steerAngle, steeringWheelValue * 45f, Time.deltaTime * 10f);
+                wheel.steerAngle = Mathf.MoveTowards(wheel.steerAngle, steeringWheelValue * _rotationAngle, Time.deltaTime * _rotationSpeed);
             }
         }
     }
