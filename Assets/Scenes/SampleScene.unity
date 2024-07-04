@@ -210,7 +210,7 @@ WheelCollider:
     targetPosition: 0.7
   m_SuspensionDistance: 0.2
   m_ForceAppPointDistance: 0
-  m_Mass: 20
+  m_Mass: 40
   m_WheelDampingRate: 1
   m_ForwardFriction:
     m_ExtremumSlip: 0.4
@@ -510,7 +510,7 @@ WheelCollider:
     targetPosition: 0.7
   m_SuspensionDistance: 0.2
   m_ForceAppPointDistance: 0
-  m_Mass: 20
+  m_Mass: 40
   m_WheelDampingRate: 1
   m_ForwardFriction:
     m_ExtremumSlip: 0.4
@@ -696,7 +696,6 @@ GameObject:
   m_Component:
   - component: {fileID: 756185666}
   - component: {fileID: 756185668}
-  - component: {fileID: 756185667}
   m_Layer: 0
   m_Name: --Gearbox--
   m_TagString: Untagged
@@ -719,78 +718,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 143180045}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &756185667
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 756185665}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa6565b8d90fd91408bd9ae71beb290e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _increaseSpeedCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: -1
-      value: 0.05
-      inSlope: 0.03509508
-      outSlope: 0.03509508
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 1
-    - serializedVersion: 3
-      time: 0
-      value: 0.1
-      inSlope: 0.16711959
-      outSlope: 0.16711959
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.20930529
-      outWeight: 0.6928558
-    - serializedVersion: 3
-      time: 0.18
-      value: 0.8
-      inSlope: 2.334614
-      outSlope: 2.334614
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.12687133
-    - serializedVersion: 3
-      time: 0.35
-      value: 1
-      inSlope: -0.058745727
-      outSlope: -0.058745727
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0.15
-      inSlope: 0.034448225
-      outSlope: 0.034448225
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 1
-    - serializedVersion: 3
-      time: 2
-      value: -1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
 --- !u!114 &756185668
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -804,7 +731,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _currentGear: 0
-  _carGearCount: 6
+  _topGear: 6
 --- !u!1 &797755692
 GameObject:
   m_ObjectHideFlags: 0
@@ -1121,7 +1048,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -7228342769576104122, guid: 8e83d8840cdfc884dac2d36d65b4540a, type: 3}
+  - {fileID: 2100000, guid: 731002501eb41c844ba778ba6501f78f, type: 2}
   - {fileID: -295858339074912218, guid: 8e83d8840cdfc884dac2d36d65b4540a, type: 3}
   - {fileID: 1120319214885557291, guid: 8e83d8840cdfc884dac2d36d65b4540a, type: 3}
   m_StaticBatchInfo:
@@ -1515,7 +1442,7 @@ WheelCollider:
     targetPosition: 0.7
   m_SuspensionDistance: 0.2
   m_ForceAppPointDistance: 0
-  m_Mass: 20
+  m_Mass: 40
   m_WheelDampingRate: 1
   m_ForwardFriction:
     m_ExtremumSlip: 0.4
@@ -1602,7 +1529,7 @@ WheelCollider:
     targetPosition: 0.7
   m_SuspensionDistance: 0.2
   m_ForceAppPointDistance: 0
-  m_Mass: 20
+  m_Mass: 40
   m_WheelDampingRate: 1
   m_ForwardFriction:
     m_ExtremumSlip: 0.4
