@@ -31,12 +31,12 @@ namespace Cars_Racing.Vehicle.EngineLogic
 
             if (!_gearbox.IsGearSwitching && !_gearbox.IsNeutralGear && gasValue > 0)
             {
-                _ecu.CalculateRPM(gasValue);
-                motorTorque = gasValue * CarConstants.CalculateMotorTorque(_ecu.CurrentRPM, _ecu.MaxRPM, _gearbox.CurrentGear, _gearbox.TopGear, _wheelColliders.GetSpeed(), 200, CarConfigurationInfo.CarConfiguration.HorsePower);
+                _ecu.CalculateRPM(gasValue, _gearbox.CurrentGear, _gearbox.TopGear, _wheelColliders.GetSpeed(), 180, CarConfigurationInfo.CarConfiguration.HorsePower);
+                motorTorque = CarCalculations.CalculateMotorTorque(_ecu.CurrentRPM, _ecu.MaxRPM, _gearbox.CurrentGear, _gearbox.TopGear, _wheelColliders.GetSpeed(), 180, CarConfigurationInfo.CarConfiguration.HorsePower);
             }
             else
             {
-                _ecu.CalculateRPM(-1f);
+                _ecu.CalculateRPM(0, _gearbox.CurrentGear, _gearbox.TopGear, _wheelColliders.GetSpeed(), 180, CarConfigurationInfo.CarConfiguration.HorsePower);
                 motorTorque = 0;
             }
 
