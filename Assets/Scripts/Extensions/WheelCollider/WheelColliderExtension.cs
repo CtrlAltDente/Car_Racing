@@ -20,4 +20,28 @@ public static class WheelColliderExtension
             wheelAction?.Invoke(wheelCollider);
         }
     }
+
+    public static float GetSpeed(this WheelCollider[] wheelColliders)
+    {
+        float avgSpeed = 0;
+
+        foreach (var wheelCollider in wheelColliders)
+        {
+            avgSpeed += 2 * Mathf.PI * wheelCollider.radius * wheelCollider.rpm * 60 / 1000;
+        }
+
+        return avgSpeed / wheelColliders.Length;
+    }
+
+    public static float GetSpeed(this List<WheelCollider> wheelColliders)
+    {
+        float avgSpeed = 0;
+
+        foreach (var wheelCollider in wheelColliders)
+        {
+            avgSpeed += 2 * Mathf.PI * wheelCollider.radius * wheelCollider.rpm * 60;
+        }
+
+        return avgSpeed / wheelColliders.Count;
+    }
 }
