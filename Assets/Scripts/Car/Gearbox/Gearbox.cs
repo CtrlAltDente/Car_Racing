@@ -11,18 +11,19 @@ namespace Cars_Racing.Vehicle.Transmission
         private int _currentGear = 0;
 
         [SerializeField]
-        private int _carGearCount;
+        private int _topGear;
 
         private Coroutine _switchGearCoroutine;
 
         public int CurrentGear { get => _currentGear; private set => _currentGear = value; }
+        public int TopGear { get => _topGear; private set => _topGear = value; }
         public bool IsGearSwitching { get; private set; }
         public bool IsNeutralGear => _currentGear == 0;
 
         public IEnumerator SetGear(int gear)
         {
             IsGearSwitching = true;
-            CurrentGear = Mathf.Clamp(gear, -1, _carGearCount);
+            CurrentGear = Mathf.Clamp(gear, -1, _topGear);
             yield return new WaitForSeconds(0.5f);
             IsGearSwitching = false;
         }
@@ -41,7 +42,7 @@ namespace Cars_Racing.Vehicle.Transmission
 
         private void IncreaseGear()
         {
-            if (CurrentGear == _carGearCount)
+            if (CurrentGear == _topGear)
                 return;
 
             _switchGearCoroutine = StartCoroutine(SetGear(CurrentGear + 1));
