@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Cars_Racing.Vehicle.Car
 {
-    public static class CarCalculations
+    public static class CarConstants
     {
         public static AnimationCurve MotorTorgueGearCurve = new AnimationCurve(new Keyframe(0, 1), new Keyframe(1, 0.2f));
         public static AnimationCurve MotorTorqueCurve = new AnimationCurve(new Keyframe(-0.4f, -1f), new Keyframe(0, 0.4f), new Keyframe(0.5f, 1), new Keyframe(0.75f, 0.6f), new Keyframe(1, 0f), new Keyframe(1.4f, -1f));

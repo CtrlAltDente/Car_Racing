@@ -6,6 +6,6 @@ namespace Cars_Racing.Vehicle.Car
 {
     public static class CarConfigurationInfo
     {
-        public static CarConfiguration CarConfiguration = new CarConfiguration() { HorsePower = 180 };
+        public static CarConfiguration CarConfiguration = new CarConfiguration() { MaxSpeed = 180, HorsePower = 180 };
     }
 }

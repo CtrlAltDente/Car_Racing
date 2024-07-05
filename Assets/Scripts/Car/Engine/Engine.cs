@@ -10,14 +10,19 @@ namespace Cars_Racing.Vehicle.EngineLogic
     {
         [SerializeField]
         private Gearbox _gearbox;
-        [SerializeField]
-        private ECU _ecu;
 
         [SerializeField]
         private WheelCollider[] _wheelColliders;
 
         [SerializeField]
+        private float MinRPM;
+        [SerializeField]
+        private float MaxRPM;
+
+        [SerializeField]
         private string _information;
+
+        public float CurrentRPM { get; private set; }
 
         public void SetEngineValues(float gasValue, float footBreakValue)
         {
@@ -31,12 +36,13 @@ namespace Cars_Racing.Vehicle.EngineLogic
 
             if (!_gearbox.IsGearSwitching && !_gearbox.IsNeutralGear && gasValue > 0)
             {
-                _ecu.CalculateRPM(gasValue, _gearbox.CurrentGear, _gearbox.TopGear, _wheelColliders.GetSpeed(), 180, CarConfigurationInfo.CarConfiguration.HorsePower);
-                motorTorque = CarCalculations.CalculateMotorTorque(_ecu.CurrentRPM, _ecu.MaxRPM, _gearbox.CurrentGear, _gearbox.TopGear, _wheelColliders.GetSpeed(), 180, CarConfigurationInfo.CarConfiguration.HorsePower);
+                float dd
+                FootBreak(ref dd);
+                
+                //motorTorque = CarConstants.CalculateMotorTorque(_ecu.CurrentRPM, _ecu.MaxRPM, _gearbox.CurrentGear, _gearbox.TopGear, _wheelColliders.GetSpeed(), 180, CarConfigurationInfo.CarConfiguration.HorsePower);
             }
             else
             {
-                _ecu.CalculateRPM(0, _gearbox.CurrentGear, _gearbox.TopGear, _wheelColliders.GetSpeed(), 180, CarConfigurationInfo.CarConfiguration.HorsePower);
                 motorTorque = 0;
             }
 
@@ -45,9 +51,9 @@ namespace Cars_Racing.Vehicle.EngineLogic
             _wheelColliders.DoWheelAction(wheel => wheel.motorTorque = motorTorque);
         }
 
-        private void FootBreak(float breakValue)
+        private void FootBreak(ref float breakValue)
         {
-
+            breakValue = 2;
         }
     }
 }
