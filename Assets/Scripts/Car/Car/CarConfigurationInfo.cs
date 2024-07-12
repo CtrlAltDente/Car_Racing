@@ -9,7 +9,7 @@ namespace Cars_Racing.Vehicle.Car
         public static CarConfiguration CarConfiguration = new CarConfiguration()
         {
             MinRPM = 800,
-            MaxRPM = 9000,
+            MaxRPM = 10000,
             MaxSpeed = 180,
             TopGear = 5,
             HorsePower = 180 
