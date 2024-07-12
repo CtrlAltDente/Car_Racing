@@ -15,16 +15,16 @@ namespace Cars_Racing.Vehicle.SteeringWheelLogic
         [SerializeField]
         private float _rotationSpeed = 90f;
 
-        public float SpeedOnWheelAmplifying => Mathf.Clamp(1 - _carWheels.GetSpeed() / Car.CarConfigurationInfo.CarConfiguration.MaxSpeed, 0.05f, 1);
+        public float SpeedOnWheelAmplifying => Mathf.Clamp(1 - _carWheels.GetSpeed() / Car.CarConfigurationInfo.CarConfiguration.MaxSpeed, 0.01f, 1);
 
         public void SetSteeringWheelValue(float steeringWheelValue)
         {
             foreach (WheelCollider wheel in _carWheels)
             {
-                wheel.steerAngle = Mathf.MoveTowards(wheel.steerAngle, SpeedOnWheelAmplifying * steeringWheelValue * _rotationAngle, Time.deltaTime * _rotationSpeed);
+                wheel.steerAngle = Mathf.MoveTowards(wheel.steerAngle, SpeedOnWheelAmplifying * steeringWheelValue * _rotationAngle, Time.deltaTime * SpeedOnWheelAmplifying * _rotationSpeed);
             }
 
-            Debug.Log((SpeedOnWheelAmplifying * steeringWheelValue * _rotationAngle).ToString("#"));
+            Debug.Log((_carWheels[0].steerAngle).ToString("#"));
         }
     }
 }
