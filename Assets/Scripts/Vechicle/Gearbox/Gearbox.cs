@@ -18,12 +18,18 @@ namespace Cars_Racing.Vehicle.Transmission
         public bool IsGearSwitching { get; private set; }
         public bool IsNeutralGear => _currentGear == 0;
 
-        public IEnumerator SetGear(int gear)
+        public IEnumerator SetGear(int gear, bool pause)
         {
             IsGearSwitching = true;
             CurrentGear = Mathf.Clamp(gear, -1, TopGear);
-            yield return new WaitForSeconds(0.5f);
+            
+            if (pause)
+            {
+                yield return new WaitForSeconds(0.5f);
+            }
+            
             IsGearSwitching = false;
+            yield return null;
         }
 
         public void SetGearChangeValue(bool increaseGear, bool decreaseGear)
@@ -43,7 +49,7 @@ namespace Cars_Racing.Vehicle.Transmission
             if (CurrentGear == TopGear)
                 return;
 
-            _switchGearCoroutine = StartCoroutine(SetGear(CurrentGear + 1));
+            _switchGearCoroutine = StartCoroutine(SetGear(CurrentGear + 1, CurrentGear != 0));
         }
 
         private void DecreaseGear()
@@ -51,7 +57,7 @@ namespace Cars_Racing.Vehicle.Transmission
             if (CurrentGear == -1)
                 return;
 
-            _switchGearCoroutine = StartCoroutine(SetGear(CurrentGear - 1));
+            _switchGearCoroutine = StartCoroutine(SetGear(CurrentGear - 1, CurrentGear != 0));
         }
     }
 }
