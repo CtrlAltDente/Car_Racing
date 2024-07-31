@@ -69,7 +69,7 @@ namespace Cars_Racing.Vehicle.EngineLogic
 
             float gearMultiplier = CarConstants.MotorTorgueGearCurve.Evaluate(Mathf.Abs(_gearbox.CurrentGear) / CarConfigurationInfo.CarConfiguration.TopGear);
 
-            return gasValue * ((rpmGearPower + rpmGearSpeedPower)) * torque * rpmGearSpeedPower * movement;
+            return gasValue * ((rpmGearPower + rpmGearSpeedPower)) * torque * rpmGearSpeedPower * movement * gearMultiplier;
         }
 
         private float CalculateSpeedPower()
