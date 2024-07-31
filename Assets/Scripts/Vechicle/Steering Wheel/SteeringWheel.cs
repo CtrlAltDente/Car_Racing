@@ -15,7 +15,7 @@ namespace Cars_Racing.Vehicle.SteeringWheelLogic
         [SerializeField]
         private float _rotationSpeed = 90f;
 
-        public float SpeedOnWheelAmplifying => Mathf.Clamp(1 - _carWheels.GetSpeed() / Car.CarConfigurationInfo.CarConfiguration.MaxSpeed, 0.01f, 1);
+        public float SpeedOnWheelAmplifying => Mathf.Clamp(1 - _carWheels.GetSpeed() / Car.CarConfigurationInfo.CarConfiguration.MaxSpeed, 0f, 1);
 
         public void SetSteeringWheelValue(float steeringWheelValue)
         {
