@@ -14,7 +14,7 @@ namespace Cars_Racing.Vehicle.Suspension
         [SerializeField]
         private float _targetValue;
 
-        private float SpringTargetValue => Mathf.Lerp(_defaultValue, _targetValue,_wheels.GetSpeed() / (Car.CarConfigurationInfo.CarConfiguration.MaxSpeed/2));
+        private float SpringTargetValue => Mathf.Lerp(_defaultValue, _targetValue, _wheels.GetSpeed() / (Car.CarConfigurationInfo.CarConfiguration.MaxSpeed / 2));
 
         private void Update()
         {
@@ -26,10 +26,10 @@ namespace Cars_Racing.Vehicle.Suspension
             _wheels.DoWheelAction(wheel => SetSuspensionSpringTargetValue(wheel, SpringTargetValue));
         }
 
-        private void SetSuspensionSpringTargetValue(WheelCollider wheelCollider, float value)
+        private void SetSuspensionSpringTargetValue(WheelCollider wheelCollider, float targetPositionValue)
         {
             var suspensionSpring = wheelCollider.suspensionSpring;
-            suspensionSpring.targetPosition = value;
+            suspensionSpring.targetPosition = targetPositionValue;
             wheelCollider.suspensionSpring = suspensionSpring;
         }
     }
