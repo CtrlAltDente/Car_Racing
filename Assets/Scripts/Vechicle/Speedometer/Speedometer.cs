@@ -34,7 +34,7 @@ namespace Cars_Racing.Vehicle.SpeedometerLogic
         private void ShowRpm()
         {
             float rpmEfficient = _engine.CurrentRPM / CarConfigurationInfo.CarConfiguration.MaxRPM;
-            float rpmValue = Mathf.Lerp(0, 0.6664f, rpmEfficient);
+            float rpmValue = Mathf.Lerp(0, 0.83333f, rpmEfficient);
             _rpmImageValue.fillAmount = rpmValue;
         }
 
