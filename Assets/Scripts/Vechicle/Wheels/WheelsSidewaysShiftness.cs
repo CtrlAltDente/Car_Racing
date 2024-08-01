@@ -14,7 +14,7 @@ namespace Cars_Racing.Vehicle.Wheels
         [SerializeField]
         private float _targetValue = 1.8f;
 
-        private float ShiftnessValue => Mathf.Lerp(_defaultValue, _targetValue, _wheels.GetSpeed() / (Car.CarConfigurationInfo.CarConfiguration.MaxSpeed / 2));
+        private float ShiftnessValue => Mathf.Lerp(_defaultValue, _targetValue, _wheels.GetSpeed() / (Car.CarConfigurationInfo.CarConfiguration.MaxSpeed));
 
         private void Update()
         {
