@@ -40,7 +40,11 @@ namespace Cars_Racing.Vehicle.SpeedometerLogic
 
         private void ShowSpeed()
         {
-            _speedText.text = (Mathf.Abs((int)_engine.CurrentSpeed)).ToString("#####");
+            int speed = Mathf.Abs(_engine.CurrentSpeed) < 0.5f ? 0 : (int)Mathf.Abs(_engine.CurrentSpeed);
+            string speedText = speed.ToString("#####");
+            _speedText.text = speedText == string.Empty ? 0.ToString() : speedText;
+
+            Debug.Log($"Speed: {speed}");
         }
 
         private void ShowGear()
