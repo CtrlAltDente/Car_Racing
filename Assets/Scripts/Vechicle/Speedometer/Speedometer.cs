@@ -5,14 +5,15 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Cars_Racing.Vehicle.SpeedometerLogic
 {
     public class Speedometer : MonoBehaviour
     {
         [SerializeField]
-        private RectTransform _pointer;
-
+        private Image _rpmImageValue;
+        
         [SerializeField]
         private TextMeshProUGUI _speedText;
         [SerializeField]
@@ -33,8 +34,8 @@ namespace Cars_Racing.Vehicle.SpeedometerLogic
         private void ShowRpm()
         {
             float rpmEfficient = _engine.CurrentRPM / CarConfigurationInfo.CarConfiguration.MaxRPM;
-
-            _pointer.rotation = Quaternion.Slerp(Quaternion.Euler(0, 0, 140), Quaternion.Euler(0, 0, -30), rpmEfficient);
+            float rpmValue = Mathf.Lerp(0, 0.6664f, rpmEfficient);
+            _rpmImageValue.fillAmount = rpmValue;
         }
 
         private void ShowSpeed()
