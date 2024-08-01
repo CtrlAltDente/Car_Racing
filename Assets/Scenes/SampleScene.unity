@@ -5464,7 +5464,7 @@ MonoBehaviour:
   - {fileID: 167746406}
   - {fileID: 530397039}
   - {fileID: 2000393527}
-  _defaultValue: 0.5
+  _defaultValue: 1.2
   _targetValue: 1.8
 --- !u!114 &609336365
 MonoBehaviour:
@@ -5632,7 +5632,7 @@ MonoBehaviour:
   - {fileID: 530397039}
   - {fileID: 2000393527}
   _defaultValue: 0.5
-  _targetValue: 1
+  _targetValue: 0.8
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
