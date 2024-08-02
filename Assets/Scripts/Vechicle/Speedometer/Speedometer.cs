@@ -11,7 +11,7 @@ namespace Cars_Racing.Vehicle.SpeedometerLogic
 {
     public class Speedometer : MonoBehaviour
     {
-        public CarConfigurationInfo CarConfigurationInfo;
+        public CarConfiguration CarConfiguration;
 
         [SerializeField]
         private Image _rpmImageValue;
@@ -35,7 +35,7 @@ namespace Cars_Racing.Vehicle.SpeedometerLogic
 
         private void ShowRpm()
         {
-            float rpmEfficient = _engine.CurrentRPM / CarConfigurationInfo.EngineConfiguration.MaxRPM;
+            float rpmEfficient = _engine.CurrentRPM / CarConfiguration.EngineConfiguration.MaxRPM;
             float rpmValue = Mathf.Lerp(0, 0.83333f, rpmEfficient);
             _rpmImageValue.fillAmount = rpmValue;
         }

@@ -1,17 +1,15 @@
-using System;
+using Cars_Racing.Vehicle.Configuration.Car;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace Cars_Racing.Vehicle.Car
 {
-    [Serializable]
-    public struct CarConfiguration
+    public class CarConfiguration : MonoBehaviour
     {
-        public float MinRPM;
-        public float MaxRPM;
-        public int MaxSpeed;
-        public int TopGear;
-        public int HorsePower;
+        public EngineConfiguration EngineConfiguration;
+        public GearboxConfiguration GearboxConfiguration;
+
+        public float AverageGearSpeed => EngineConfiguration.MaxSpeed / GearboxConfiguration.TopGear;
     }
 }

@@ -7,7 +7,7 @@ namespace Cars_Racing.Vehicle.Wheels
 {
     public class WheelsForwardShiftness : MonoBehaviour
     {
-        public CarConfigurationInfo CarConfigurationInfo;
+        public CarConfiguration CarConfiguration;
 
         [SerializeField]
         private WheelCollider[] _wheels;
@@ -17,7 +17,7 @@ namespace Cars_Racing.Vehicle.Wheels
         [SerializeField]
         private float _targetValue = 1.8f;
 
-        private float ShiftnessValue => Mathf.Lerp(_defaultValue, _targetValue, _wheels.GetSpeed() / (CarConfigurationInfo.EngineConfiguration.MaxSpeed));
+        private float ShiftnessValue => Mathf.Lerp(_defaultValue, _targetValue, _wheels.GetSpeed() / (CarConfiguration.EngineConfiguration.MaxSpeed));
 
         private void Update()
         {

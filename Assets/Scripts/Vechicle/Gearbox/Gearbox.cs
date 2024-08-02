@@ -8,7 +8,7 @@ namespace Cars_Racing.Vehicle.Transmission
 {
     public class Gearbox : MonoBehaviour
     {
-        public CarConfigurationInfo CarConfigurationInfo;
+        public CarConfiguration CarConfiguration;
 
         [SerializeField]
         private int _currentGear = 0;
@@ -16,7 +16,7 @@ namespace Cars_Racing.Vehicle.Transmission
         private Coroutine _switchGearCoroutine;
 
         public int CurrentGear { get => _currentGear; private set => _currentGear = value; }
-        public int TopGear { get => CarConfigurationInfo.GearboxConfiguration.TopGear; }
+        public int TopGear { get => CarConfiguration.GearboxConfiguration.TopGear; }
         public bool IsGearSwitching { get; private set; }
         public bool IsNeutralGear => _currentGear == 0;
 
