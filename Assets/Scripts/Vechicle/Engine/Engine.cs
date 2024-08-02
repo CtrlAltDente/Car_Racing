@@ -8,6 +8,8 @@ namespace Cars_Racing.Vehicle.EngineLogic
 {
     public class Engine : MonoBehaviour
     {
+        public CarConfigurationInfo CarConfigurationInfo;
+
         [SerializeField]
         private Gearbox _gearbox;
 
@@ -51,23 +53,23 @@ namespace Cars_Racing.Vehicle.EngineLogic
 
         private void CalculateRPM(float gasValue)
         {
-            PotentialRPM = Mathf.Clamp(Mathf.Lerp(0, CarConfigurationInfo.CarConfiguration.MaxRPM, CalculateSpeedPower()), CarConfigurationInfo.CarConfiguration.MinRPM, CarConfigurationInfo.CarConfiguration.MaxRPM);
+            PotentialRPM = Mathf.Clamp(Mathf.Lerp(0, CarConfigurationInfo.EngineConfiguration.MaxRPM, CalculateSpeedPower()), CarConfigurationInfo.EngineConfiguration.MinRPM, CarConfigurationInfo.EngineConfiguration.MaxRPM);
 
-            float stepRpm = CarConfigurationInfo.CarConfiguration.MaxRPM * Time.deltaTime;
+            float stepRpm = CarConfigurationInfo.EngineConfiguration.MaxRPM * Time.deltaTime;
             float rpm = Mathf.MoveTowards(CurrentRPM, PotentialRPM, stepRpm);
 
-            CurrentRPM = gasValue > 0 ? rpm : Mathf.Clamp(CurrentRPM - stepRpm + 2 * stepRpm * Mathf.Abs(gasValue), CarConfigurationInfo.CarConfiguration.MinRPM, CarConfigurationInfo.CarConfiguration.MaxRPM);
+            CurrentRPM = gasValue > 0 ? rpm : Mathf.Clamp(CurrentRPM - stepRpm + 2 * stepRpm * Mathf.Abs(gasValue), CarConfigurationInfo.EngineConfiguration.MinRPM, CarConfigurationInfo.EngineConfiguration.MaxRPM);
         }
 
         private float CalculateMotorTorque(float gasValue)
         {
-            float rpmGearPower = CarConstants.RPMPower.Evaluate(CurrentRPM / CarConfigurationInfo.CarConfiguration.MaxRPM);
+            float rpmGearPower = CarConstants.RPMPower.Evaluate(CurrentRPM / CarConfigurationInfo.EngineConfiguration.MaxRPM);
             float rpmGearSpeedPower = CarConstants.RPMPowerToGearSpeedCurve.Evaluate(CalculateSpeedPower());
 
-            float torque = (CarConfigurationInfo.CarConfiguration.HorsePower * 745.7f) / ((2 * Mathf.PI * CurrentRPM) / 60);
+            float torque = (CarConfigurationInfo.EngineConfiguration.HorsePower * 745.7f) / ((2 * Mathf.PI * CurrentRPM) / 60);
             float movement = Mathf.Clamp(_gearbox.CurrentGear, -1, 1);
 
-            float gearMultiplier = CarConstants.MotorTorgueGearCurve.Evaluate(Mathf.Abs(_gearbox.CurrentGear) / CarConfigurationInfo.CarConfiguration.TopGear);
+            float gearMultiplier = CarConstants.MotorTorgueGearCurve.Evaluate(Mathf.Abs(_gearbox.CurrentGear) / CarConfigurationInfo.GearboxConfiguration.TopGear);
 
             return gasValue * ((rpmGearPower + rpmGearSpeedPower)) * torque * rpmGearSpeedPower * movement * gearMultiplier;
         }

@@ -1,3 +1,4 @@
+using Cars_Racing.Vehicle.Car;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,6 +7,8 @@ namespace Cars_Racing.Vehicle.Suspension
 {
     public class WheelsSuspensionSpring : MonoBehaviour
     {
+        public CarConfigurationInfo CarConfigurationInfo;
+
         [SerializeField]
         private WheelCollider[] _wheels;
 
@@ -14,7 +17,7 @@ namespace Cars_Racing.Vehicle.Suspension
         [SerializeField]
         private float _targetValue;
 
-        private float SpringTargetValue => Mathf.Lerp(_defaultValue, _targetValue, _wheels.GetSpeed() / (Car.CarConfigurationInfo.CarConfiguration.MaxSpeed / 2));
+        private float SpringTargetValue => Mathf.Lerp(_defaultValue, _targetValue, _wheels.GetSpeed() / (CarConfigurationInfo.EngineConfiguration.MaxSpeed / 2));
 
         private void Update()
         {

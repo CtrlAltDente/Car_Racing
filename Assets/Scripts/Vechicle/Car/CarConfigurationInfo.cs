@@ -1,20 +1,15 @@
+using Cars_Racing.Vehicle.Configuration.Car;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace Cars_Racing.Vehicle.Car
 {
-    public static class CarConfigurationInfo
+    public class CarConfigurationInfo : MonoBehaviour
     {
-        public static CarConfiguration CarConfiguration = new CarConfiguration()
-        {
-            MinRPM = 800,
-            MaxRPM = 10000,
-            MaxSpeed = 180,
-            TopGear = 5,
-            HorsePower = 180 
-        };
+        public EngineConfiguration EngineConfiguration;
+        public GearboxConfiguration GearboxConfiguration;
 
-        public static float AverageGearSpeed => CarConfiguration.MaxSpeed / CarConfiguration.TopGear;
+        public float AverageGearSpeed => EngineConfiguration.MaxSpeed / GearboxConfiguration.TopGear;
     }
 }

@@ -1,3 +1,4 @@
+using Cars_Racing.Vehicle.Car;
 using Cars_Racing.Vehicle.Wheels;
 using System.Collections;
 using System.Collections.Generic;
@@ -7,6 +8,8 @@ namespace Cars_Racing.Vehicle.SteeringWheelLogic
 {
     public class SteeringWheel : MonoBehaviour
     {
+        public CarConfigurationInfo CarConfigurationInfo;
+
         [SerializeField]
         private WheelCollider[] _carWheels;
 
@@ -15,7 +18,7 @@ namespace Cars_Racing.Vehicle.SteeringWheelLogic
         [SerializeField]
         private float _rotationSpeed = 90f;
 
-        public float SpeedOnWheelAmplifying => Mathf.Clamp(1 - _carWheels.GetSpeed() / Car.CarConfigurationInfo.CarConfiguration.MaxSpeed, 0f, 1);
+        public float SpeedOnWheelAmplifying => Mathf.Clamp(1 - _carWheels.GetSpeed() / CarConfigurationInfo.EngineConfiguration.MaxSpeed, 0f, 1);
 
         public void SetSteeringWheelValue(float steeringWheelValue)
         {
