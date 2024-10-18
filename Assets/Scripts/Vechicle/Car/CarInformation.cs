@@ -26,5 +26,11 @@ namespace Cars_Racing.Vehicle.Car
             _carInformation = $"Gear: {_gearbox.CurrentGear}\n" +
                 $"Speed: {(_rigidbody.velocity.magnitude * 3.6f).ToString("#.#")}Km/H";
         }
+
+        private void OnDrawGizmos()
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawSphere(transform.position + _rigidbody.centerOfMass, 0.1f);
+        }
     }
 }
