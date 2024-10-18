@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Cars_Racing.Vehicle.Suspension
 {
-    public class WheelsSuspensionSpring : MonoBehaviour
+    public class WheelsSuspensionSpringTargetPosition : MonoBehaviour
     {
         public CarConfiguration CarConfiguration;
 
