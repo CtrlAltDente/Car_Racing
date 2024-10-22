@@ -1,3 +1,4 @@
+using Cars_Racing.Calculations.Interfaces;
 using Cars_Racing.Vehicle.Car;
 using System.Collections;
 using System.Collections.Generic;
@@ -5,7 +6,7 @@ using UnityEngine;
 
 namespace Cars_Racing.Vehicle.Wheels
 {
-    public class WheelsSidewaysShiftness : MonoBehaviour
+    public class WheelsSidewaysShiftness : MonoBehaviour, IByCarSpeedValue
     {
         public CarConfiguration CarConfiguration;
 
@@ -13,11 +14,9 @@ namespace Cars_Racing.Vehicle.Wheels
         private WheelCollider[] _wheels;
 
         [SerializeField]
-        private float _defaultValue = 1f;
-        [SerializeField]
-        private float _targetValue = 1.8f;
+        private AnimationCurve _sidewaysShiftnessValueBySpeed;
 
-        private float ShiftnessValue => Mathf.Lerp(_defaultValue, _targetValue, _wheels.GetSpeed() / (CarConfiguration.EngineConfiguration.MaxSpeed));
+        public float ByCarSpeedValue => _sidewaysShiftnessValueBySpeed.Evaluate(_wheels.GetSpeed() / CarConfiguration.EngineConfiguration.MaxSpeed);
 
         private void Update()
         {
@@ -26,7 +25,7 @@ namespace Cars_Racing.Vehicle.Wheels
 
         private void ConfigureShiftnessValue()
         {
-            _wheels.DoWheelAction(wheel => SetShiftnessValue(wheel, ShiftnessValue));
+            _wheels.DoWheelAction(wheel => SetShiftnessValue(wheel, ByCarSpeedValue));
         }
 
         private void SetShiftnessValue(WheelCollider wheelCollider, float shiftnessValue)

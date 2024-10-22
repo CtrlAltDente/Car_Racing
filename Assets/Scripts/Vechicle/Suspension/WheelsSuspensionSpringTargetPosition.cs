@@ -1,3 +1,4 @@
+using Cars_Racing.Calculations.Interfaces;
 using Cars_Racing.Vehicle.Car;
 using System.Collections;
 using System.Collections.Generic;
@@ -5,7 +6,7 @@ using UnityEngine;
 
 namespace Cars_Racing.Vehicle.Suspension
 {
-    public class WheelsSuspensionSpringTargetPosition : MonoBehaviour
+    public class WheelsSuspensionSpringTargetPosition : MonoBehaviour, IByCarSpeedValue
     {
         public CarConfiguration CarConfiguration;
 
@@ -13,11 +14,9 @@ namespace Cars_Racing.Vehicle.Suspension
         private WheelCollider[] _wheels;
 
         [SerializeField]
-        private float _defaultValue;
-        [SerializeField]
-        private float _targetValue;
+        private AnimationCurve _suspensionValueBySpeed;
 
-        private float SpringTargetValue => Mathf.Lerp(_defaultValue, _targetValue, _wheels.GetSpeed() / (CarConfiguration.EngineConfiguration.MaxSpeed / 2));
+        public float ByCarSpeedValue => _suspensionValueBySpeed.Evaluate(_wheels.GetSpeed() / CarConfiguration.EngineConfiguration.MaxSpeed);
 
         private void Update()
         {
@@ -26,7 +25,7 @@ namespace Cars_Racing.Vehicle.Suspension
 
         private void ConfigureTargetValue()
         {
-            _wheels.DoWheelAction(wheel => SetSuspensionSpringTargetValue(wheel, SpringTargetValue));
+            _wheels.DoWheelAction(wheel => SetSuspensionSpringTargetValue(wheel, ByCarSpeedValue));
         }
 
         private void SetSuspensionSpringTargetValue(WheelCollider wheelCollider, float targetPositionValue)

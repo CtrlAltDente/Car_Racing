@@ -1,3 +1,4 @@
+using Cars_Racing.Calculations.Interfaces;
 using Cars_Racing.Vehicle.Car;
 using Cars_Racing.Vehicle.Wheels;
 using System.Collections;
@@ -6,7 +7,7 @@ using UnityEngine;
 
 namespace Cars_Racing.Vehicle.SteeringWheelLogic
 {
-    public class SteeringWheel : MonoBehaviour
+    public class SteeringWheel : MonoBehaviour, IByCarSpeedValue
     {
         public CarConfiguration CarConfiguration;
 
@@ -18,13 +19,16 @@ namespace Cars_Racing.Vehicle.SteeringWheelLogic
         [SerializeField]
         private float _rotationSpeed = 90f;
 
-        public float SpeedOnWheelAmplifying => Mathf.Clamp(1 - _carWheels.GetSpeed() / CarConfiguration.EngineConfiguration.MaxSpeed, 0f, 1);
+        [SerializeField]
+        private AnimationCurve _steeringWheelPowerBySpeed;
+
+        public float ByCarSpeedValue => _steeringWheelPowerBySpeed.Evaluate(_carWheels.GetSpeed() / CarConfiguration.EngineConfiguration.MaxSpeed);
 
         public void SetSteeringWheelValue(float steeringWheelValue)
         {
             foreach (WheelCollider wheel in _carWheels)
             {
-                wheel.steerAngle = Mathf.MoveTowards(wheel.steerAngle, SpeedOnWheelAmplifying * steeringWheelValue * _rotationAngle, Time.deltaTime * SpeedOnWheelAmplifying * _rotationSpeed);
+                wheel.steerAngle = Mathf.MoveTowards(wheel.steerAngle, ByCarSpeedValue * steeringWheelValue * _rotationAngle, Time.deltaTime * ByCarSpeedValue * _rotationSpeed);
             }
 
             Debug.Log((_carWheels[0].steerAngle).ToString("#"));
