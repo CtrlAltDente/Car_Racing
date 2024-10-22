@@ -4,8 +4,8 @@ using UnityEngine;
 
 namespace Cars_Racing.Calculations.Interfaces
 {
-    public interface IByCarSpeedValue
+    public interface IByCarSpeedValue<T>
     {
-        float ByCarSpeedValue { get; }
+        T ByCarSpeedValue { get; }
     }
 }

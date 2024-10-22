@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace Cars_Racing.Vehicle.SteeringWheelLogic
 {
-    public class SteeringWheel : MonoBehaviour, IByCarSpeedValue
+    public class SteeringWheel : MonoBehaviour, IByCarSpeedValue<float>
     {
         public CarConfiguration CarConfiguration;
 

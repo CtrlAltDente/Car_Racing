@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Cars_Racing.Vehicle.Suspension
 {
-    public class WheelsSuspensionSpringTargetPosition : MonoBehaviour, IByCarSpeedValue
+    public class WheelsSuspensionSpringTargetPosition : MonoBehaviour, IByCarSpeedValue<float>
     {
         public CarConfiguration CarConfiguration;
 
