@@ -2,6 +2,7 @@ using Cars_Racing.Vehicle.Car;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Cars_Racing.Vehicle.Transmission
@@ -11,19 +12,22 @@ namespace Cars_Racing.Vehicle.Transmission
         public CarConfiguration CarConfiguration;
 
         [SerializeField]
-        private int _currentGear = 0;
+        private int _gearIndex = 1;
 
         private Coroutine _switchGearCoroutine;
 
-        public int CurrentGear { get => _currentGear; private set => _currentGear = value; }
-        public int TopGear { get => CarConfiguration.GearboxConfiguration.TopGear; }
+        public bool IsNeutralGear => CarConfiguration.GearboxConfiguration.Gears[_gearIndex].GearNumber == 0;
+        public bool IsNegativeGear => CarConfiguration.GearboxConfiguration.Gears[_gearIndex].GearNumber < 0;
+
+        public int GearIndex => _gearIndex;
+        public int GearNumber => CarConfiguration.GearboxConfiguration.Gears[_gearIndex].GearNumber;
+        
         public bool IsGearSwitching { get; private set; }
-        public bool IsNeutralGear => _currentGear == 0;
 
         public IEnumerator SetGear(int gear, bool pause)
         {
             IsGearSwitching = true;
-            CurrentGear = Mathf.Clamp(gear, -1, TopGear);
+            _gearIndex = Mathf.Clamp(gear, 0, CarConfiguration.GearboxConfiguration.Gears.Length-1);
             
             if (pause)
             {
@@ -48,18 +52,19 @@ namespace Cars_Racing.Vehicle.Transmission
 
         private void IncreaseGear()
         {
-            if (CurrentGear == TopGear)
+            if (_gearIndex == CarConfiguration.GearboxConfiguration.Gears.Length - 1)
                 return;
 
-            _switchGearCoroutine = StartCoroutine(SetGear(CurrentGear + 1, CurrentGear != 0));
+            _switchGearCoroutine = StartCoroutine(SetGear(_gearIndex + 1, _gearIndex != 0));
         }
 
         private void DecreaseGear()
         {
-            if (CurrentGear == -1)
+            if (_gearIndex == 0)
                 return;
 
-            _switchGearCoroutine = StartCoroutine(SetGear(CurrentGear - 1, CurrentGear != 0));
+            _switchGearCoroutine = StartCoroutine(SetGear(_gearIndex - 1, _gearIndex != 0));
         }
+
     }
 }

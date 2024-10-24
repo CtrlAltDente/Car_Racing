@@ -338,7 +338,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1923238337}
-  - {fileID: 756185666}
   - {fileID: 526158020}
   - {fileID: 274525052}
   - {fileID: 640099690}
@@ -534,6 +533,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 274525052}
+  - component: {fileID: 274525054}
+  - component: {fileID: 274525053}
   m_Layer: 0
   m_Name: --Transmission--
   m_TagString: Untagged
@@ -556,6 +557,34 @@ Transform:
   m_Children: []
   m_Father: {fileID: 143180045}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &274525053
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 274525051}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 982f0a268c62740459225a531251b74c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CarConfiguration: {fileID: 919132149515515452}
+  _gearIndex: 1
+--- !u!114 &274525054
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 274525051}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abd05fd8ce454db4b8190a5586091ace, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _carConfiguration: {fileID: 919132149515515452}
+  _gearbox: {fileID: 274525053}
 --- !u!1 &276167719
 GameObject:
   m_ObjectHideFlags: 0
@@ -2191,52 +2220,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1841370130}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &756185665
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 756185666}
-  - component: {fileID: 756185668}
-  m_Layer: 0
-  m_Name: --Gearbox--
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &756185666
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 756185665}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 143180045}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &756185668
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 756185665}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 982f0a268c62740459225a531251b74c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CarConfiguration: {fileID: 919132149515515452}
-  _currentGear: 0
 --- !u!1 &782747664
 GameObject:
   m_ObjectHideFlags: 0
@@ -2845,7 +2828,7 @@ MonoBehaviour:
   _speedText: {fileID: 1812303691}
   _geartext: {fileID: 443258698}
   _engine: {fileID: 1923238338}
-  _gearbox: {fileID: 756185668}
+  _gearbox: {fileID: 274525053}
 --- !u!1 &1283580454
 GameObject:
   m_ObjectHideFlags: 0
@@ -4620,7 +4603,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CarConfiguration: {fileID: 919132149515515452}
-  _gearbox: {fileID: 756185668}
+  _gearbox: {fileID: 274525053}
+  _transmission: {fileID: 274525054}
   _wheelColliders:
   - {fileID: 1941736339}
   - {fileID: 167746406}
@@ -5625,7 +5609,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 764c1ff3949f4fc41b75830c1cf6e336, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EngineConfiguration: {fileID: 11400000, guid: c19cf172761eef244952b5b4142eb27c, type: 2}
+  EngineConfiguration: {fileID: 11400000, guid: 638e330c689fccf4aa4f847490c744aa, type: 2}
   GearboxConfiguration: {fileID: 11400000, guid: a675b20474bba624cbad6fbedf26c1c4, type: 2}
 --- !u!114 &919132149515515453
 MonoBehaviour:
@@ -5640,7 +5624,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rigidbody: {fileID: 1417078793}
-  _gearbox: {fileID: 756185668}
+  _gearbox: {fileID: 274525053}
+  _transmission: {fileID: 274525054}
   _wheelColliders:
   - {fileID: 1941736339}
   - {fileID: 167746406}
@@ -5660,7 +5645,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _steeringWheel: {fileID: 526158021}
-  _gearbox: {fileID: 756185668}
+  _gearbox: {fileID: 274525053}
   _engine: {fileID: 1923238338}
 --- !u!4 &1298347070423960450
 Transform:

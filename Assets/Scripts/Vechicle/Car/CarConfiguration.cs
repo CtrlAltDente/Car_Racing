@@ -9,7 +9,5 @@ namespace Cars_Racing.Vehicle.Car
     {
         public EngineConfiguration EngineConfiguration;
         public GearboxConfiguration GearboxConfiguration;
-
-        public float AverageGearSpeed => EngineConfiguration.MaxSpeed / GearboxConfiguration.TopGear;
     }
 }

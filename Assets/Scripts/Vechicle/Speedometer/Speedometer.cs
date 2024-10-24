@@ -51,7 +51,7 @@ namespace Cars_Racing.Vehicle.SpeedometerLogic
 
         private void ShowGear()
         {
-            string gearText = _gearbox.CurrentGear < 0 ? "R" : _gearbox.CurrentGear == 0 ? "N" : _gearbox.CurrentGear.ToString("##");
+            string gearText = _gearbox.IsNegativeGear ? "R" : _gearbox.IsNeutralGear ? "N" : _gearbox.GearNumber.ToString("##");
             _geartext.text = gearText;
         }
     }

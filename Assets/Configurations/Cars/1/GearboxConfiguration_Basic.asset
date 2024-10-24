@@ -12,4 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d19a7b793121d9245b53acb0de1705d0, type: 3}
   m_Name: GearboxConfiguration_Basic
   m_EditorClassIdentifier: 
-  TopGear: 5
+  Gears:
+  - GearNumber: -1
+    GearRatio: 3.454
+  - GearNumber: 0
+    GearRatio: 0
+  - GearNumber: 1
+    GearRatio: 3.454
+  - GearNumber: 2
+    GearRatio: 1.904
+  - GearNumber: 3
+    GearRatio: 1.28
+  - GearNumber: 4
+    GearRatio: 0.914
+  - GearNumber: 5
+    GearRatio: 0.757

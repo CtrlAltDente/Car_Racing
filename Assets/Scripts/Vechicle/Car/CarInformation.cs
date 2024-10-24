@@ -12,6 +12,8 @@ namespace Cars_Racing.Vehicle.Car
 
         [SerializeField]
         private Gearbox _gearbox;
+        [SerializeField]
+        private Transmission.Transmission _transmission;
 
         [SerializeField]
         private WheelCollider[] _wheelColliders;
@@ -33,12 +35,14 @@ namespace Cars_Racing.Vehicle.Car
 
         private string GetCurrentGear()
         {
-            return $"Gear: {_gearbox.CurrentGear}\n";
+            return $"Gear: {_gearbox.GearNumber}\n";
         }
 
         private string GetSpeed()
         {
-            return $"Speed: {(_rigidbody.velocity.magnitude * 3.6f).ToString("#.#")}Km/H\n";
+            return $"Speed: {(_rigidbody.velocity.magnitude * 3.6f).ToString("#.#")}Km/H\n" +
+                $"Minimum Gear Speed: {_transmission.CurrentGearMinSpeed}\n" +
+                $"Maximum Gear Speed: {_transmission.CurrentGearMaxSpeed}\n";
         }
 
         private string GetMotorTorque()
