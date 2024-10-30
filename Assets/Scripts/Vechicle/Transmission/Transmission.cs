@@ -15,7 +15,7 @@ namespace Cars_Racing.Vehicle.Transmission
 
         public Gearbox Gearbox => _gearbox;
 
-        public float CurrentGearMinSpeed => CarConstants.CalculateGearAndRpmSpeed(_carConfiguration.GearboxConfiguration.Gears[_gearbox.GearIndex], _carConfiguration.EngineConfiguration.MinRPM) * 3.6f;
-        public float CurrentGearMaxSpeed => CarConstants.CalculateGearAndRpmSpeed(_carConfiguration.GearboxConfiguration.Gears[_gearbox.GearIndex], _carConfiguration.EngineConfiguration.MaxRPM) * 3.6f;
+        public float CurrentGearMinSpeed => CarConstants.CalculateGearAndRpmSpeed(_gearbox.CurrentGear, _carConfiguration.EngineConfiguration.MinRPM) * 3.6f;
+        public float CurrentGearMaxSpeed => CarConstants.CalculateGearAndRpmSpeed(_gearbox.CurrentGear, _carConfiguration.EngineConfiguration.MaxRPM) * 3.6f;
     }
 }

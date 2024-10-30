@@ -21,7 +21,9 @@ namespace Cars_Racing.Vehicle.Transmission
 
         public int GearIndex => _gearIndex;
         public int GearNumber => CarConfiguration.GearboxConfiguration.Gears[_gearIndex].GearNumber;
-        
+        public Gear CurrentGear => CarConfiguration.GearboxConfiguration.Gears[_gearIndex];
+
+
         public bool IsGearSwitching { get; private set; }
 
         public IEnumerator SetGear(int gear, bool pause)
