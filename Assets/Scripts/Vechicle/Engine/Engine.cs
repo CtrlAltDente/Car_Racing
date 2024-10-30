@@ -70,11 +70,9 @@ namespace Cars_Racing.Vehicle.EngineLogic
             float movement = Mathf.Clamp(_gearbox.GearNumber, -1, 1);
 
             float rpmGearPower = CarConstants.RPMPower.Evaluate(PotentialRPM / CarConfiguration.EngineConfiguration.MaxRPM);
-            float rpmGearSpeedPower = CarConstants.PowerToGearSpeedCurve.Evaluate(CalculateSpeedPower(-0.2f,1));
+            float rpmGearSpeedPower = CarConstants.PowerToGearSpeedCurve.Evaluate(CalculateSpeedPower(0,1));
 
-            float gearMultiplier = CarConstants.MotorTorqueGearCurve.Evaluate(Mathf.Abs(_gearbox.GearNumber) / CarConfiguration.GearboxConfiguration.TopGear);
-
-            float torque = CarConstants.CalculateMotorTorque(CarConfiguration.EngineConfiguration.HorsePower, CurrentRPM);
+            float torque = CarConstants.CalculateMotorTorque(CarConfiguration.EngineConfiguration.HorsePower, CurrentRPM, _gearbox.CurrentGear);
 
             PotentialMotorTorque = torque * rpmGearPower * rpmGearSpeedPower * gearMultiplier;
 
