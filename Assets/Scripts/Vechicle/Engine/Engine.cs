@@ -49,12 +49,12 @@ namespace Cars_Racing.Vehicle.EngineLogic
 
             _wheelColliders.DoWheelAction(wheel => wheel.motorTorque = MotorTorgue);
 
-            _information = $"Speed: {CurrentSpeed}, Current RPM: {CurrentRPM.ToString("#")}, Potential RPM: {PotentialRPM.ToString("#")}, Motor Toqgue: {MotorTorgue.ToString("#")}, Speed Power: {CalculateSpeedPower()}";
+            _information = $"Speed: {CurrentSpeed}, Current RPM: {CurrentRPM.ToString("#")}, Potential RPM: {PotentialRPM.ToString("#")}, Motor Toqgue: {MotorTorgue.ToString("#")}, Speed Power: {CalculateSpeedPower(0,1)}";
         }
 
         private void CalculateRPM(float gasValue)
         {
-            PotentialRPM = Mathf.Clamp(Mathf.Lerp(0, CarConfiguration.EngineConfiguration.MaxRPM, CalculateSpeedPower()), CarConfiguration.EngineConfiguration.MinRPM, CarConfiguration.EngineConfiguration.MaxRPM);
+            PotentialRPM = Mathf.Clamp(Mathf.Lerp(0, CarConfiguration.EngineConfiguration.MaxRPM, CalculateSpeedPower(0,1)), CarConfiguration.EngineConfiguration.MinRPM, CarConfiguration.EngineConfiguration.MaxRPM);
 
             float stepRpm = CarConfiguration.EngineConfiguration.MaxRPM * Time.deltaTime;
             float rpm = Mathf.MoveTowards(CurrentRPM, PotentialRPM, stepRpm);
@@ -70,11 +70,11 @@ namespace Cars_Racing.Vehicle.EngineLogic
             float movement = Mathf.Clamp(_gearbox.GearNumber, -1, 1);
 
             float rpmGearPower = CarConstants.RPMPower.Evaluate(PotentialRPM / CarConfiguration.EngineConfiguration.MaxRPM);
-            float rpmGearSpeedPower = CarConstants.RPMPowerToGearSpeedCurve.Evaluate(CalculateSpeedPower());
+            float rpmGearSpeedPower = CarConstants.PowerToGearSpeedCurve.Evaluate(CalculateSpeedPower(-0.2f,1));
 
             float gearMultiplier = CarConstants.MotorTorqueGearCurve.Evaluate(Mathf.Abs(_gearbox.GearNumber) / CarConfiguration.GearboxConfiguration.TopGear);
 
-            float torque = (CarConfiguration.EngineConfiguration.HorsePower * 745.7f) / ((2 * Mathf.PI * CurrentRPM) / 60); //It is a formula!
+            float torque = CarConstants.CalculateMotorTorque(CarConfiguration.EngineConfiguration.HorsePower, CurrentRPM);
 
             PotentialMotorTorque = torque * rpmGearPower * rpmGearSpeedPower * gearMultiplier;
 
@@ -82,15 +82,15 @@ namespace Cars_Racing.Vehicle.EngineLogic
             MotorTorgue = Mathf.MoveTowards(MotorTorgue, PotentialMotorTorque * gasValue * movement, motorTorqueChangeSpeed * Time.deltaTime);
         }
 
-        private float CalculateSpeedPower()
+        private float CalculateSpeedPower(float minValue, float maxValue)
         {
             if (_gearbox.IsNegativeGear)
             {
-                return Mathf.Lerp(0, 1, Mathf.Abs(CurrentSpeed - 10) / ((Mathf.Abs(_transmission.CurrentGearMaxSpeed) - 0)));
+                return Mathf.Lerp(minValue, maxValue, Mathf.Abs(CurrentSpeed - 10) / ((Mathf.Abs(_transmission.CurrentGearMaxSpeed) - 0)));
             }
             else
             {
-                return Mathf.Clamp01(Mathf.Lerp(0, 1, (CurrentSpeed - _transmission.CurrentGearMinSpeed) / (_transmission.CurrentGearMaxSpeed - _transmission.CurrentGearMinSpeed)));
+                return Mathf.Lerp(minValue, maxValue, (CurrentSpeed - _transmission.CurrentGearMinSpeed) / (_transmission.CurrentGearMaxSpeed - _transmission.CurrentGearMinSpeed));
             }
         }
 
