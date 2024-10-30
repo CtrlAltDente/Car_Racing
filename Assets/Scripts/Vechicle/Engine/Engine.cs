@@ -74,7 +74,7 @@ namespace Cars_Racing.Vehicle.EngineLogic
 
             float torque = CarConstants.CalculateMotorTorque(CarConfiguration.EngineConfiguration.HorsePower, CurrentRPM, _gearbox.CurrentGear);
 
-            PotentialMotorTorque = torque * rpmGearPower * rpmGearSpeedPower * gearMultiplier;
+            PotentialMotorTorque = torque * rpmGearPower * rpmGearSpeedPower;
 
             float motorTorqueChangeSpeed = Mathf.Lerp(100, 200, CurrentRPM / CarConfiguration.EngineConfiguration.MaxRPM); //Need to rework!
             MotorTorgue = Mathf.MoveTowards(MotorTorgue, PotentialMotorTorque * gasValue * movement, motorTorqueChangeSpeed * Time.deltaTime);
