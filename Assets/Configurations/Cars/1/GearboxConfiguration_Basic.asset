@@ -15,15 +15,22 @@ MonoBehaviour:
   Gears:
   - GearNumber: -1
     GearRatio: 3.454
+    DifferentialRatio: 4.1
   - GearNumber: 0
-    GearRatio: 0
+    GearRatio: 5
+    DifferentialRatio: 4.1
   - GearNumber: 1
     GearRatio: 3.454
+    DifferentialRatio: 4.1
   - GearNumber: 2
     GearRatio: 1.904
+    DifferentialRatio: 4.1
   - GearNumber: 3
     GearRatio: 1.28
+    DifferentialRatio: 4.1
   - GearNumber: 4
     GearRatio: 0.914
+    DifferentialRatio: 4.1
   - GearNumber: 5
     GearRatio: 0.757
+    DifferentialRatio: 4.1

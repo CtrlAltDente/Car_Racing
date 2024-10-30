@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: EngineConfiguration_Basic
   m_EditorClassIdentifier: 
   MinRPM: 800
-  MaxRPM: 10000
-  MaxSpeed: 200
-  HorsePower: 200
+  MaxRPM: 7500
+  MaxSpeed: 160
+  HorsePower: 65
